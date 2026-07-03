@@ -1,6 +1,10 @@
 # FIFA Analytics Hub
 
-🔗 **[View the Live Tableau Dashboard](https://public.tableau.com/views/FIFA26Analysis/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)**
+## 🔗 Live Links
+- 🚀 **[Live Web Application (Render)](https://fifa-demo-2.onrender.com)**
+- 📊 **[Interactive Tableau Dashboard](https://public.tableau.com/views/FIFA26Analysis/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)**
+
+## 🚀 Features
 
 ## 🛠️ Tech Stack
 - **Backend:** Python / Flask
