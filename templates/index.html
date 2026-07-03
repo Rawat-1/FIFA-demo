@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA Analytics | Premium Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script type="module"></script>
+    
+    <style>
+        :root {
+            /* Golden-Dark Theme Colors */
+            --bg-color: #0a0a0a;
+            --nav-bg: #121212;
+            --card-bg: #171717;
+            --text-main: #f5f5f5;
+            --text-muted: #a3a3a3;
+            --gold-primary: #d4af37; /* Metallic Gold */
+            --gold-hover: #f1c40f;
+            --border-color: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--nav-bg);
+            padding: 1.2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--gold-primary);
+        }
+
+        nav .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--gold-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6rem 4rem;
+            min-height: 80vh;
+            background: radial-gradient(circle at top right, #1a1710, var(--bg-color));
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, #d4af37, #f9e596);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-analytics {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--gold-primary);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid var(--gold-primary);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn-analytics:hover {
+            background-color: var(--gold-primary);
+            color: var(--bg-color);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* 3D Model Container */
+        .hero-model {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            --poster-color: transparent;
+        }
+
+        /* Section Formatting */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .section-title span {
+            color: var(--gold-primary);
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.05);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: var(--gold-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .card-link:hover {
+            color: var(--gold-hover);
+        }
+
+        /* Pricing Table Demo */
+        .pricing-tier {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .pricing-tier.featured {
+            border: 2px solid var(--gold-primary);
+            position: relative;
+            transform: scale(1.05);
+        }
+
+        .pricing-tier.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold-primary);
+            color: var(--bg-color);
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 20px;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin: 1.5rem 0;
+        }
+
+        .pricing-tier ul {
+            list-style: none;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-tier ul li {
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background-color: var(--nav-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 4rem 2rem;
+            }
+            .hero-model {
+                margin-top: 3rem;
+                width: 100%;
+            }
+            .pricing-tier.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">FIFA Hub Premium</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/analytics">Analytics</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Elite Analytics for the Beautiful Game</h1>
+            <p>Dive deep into player valuations, club dynamics, and geographic distributions. Experience the game through the lens of precision data.</p>
+            <a href="/analytics" class="btn-analytics">Launch Analytics Dashboard</a>
+        </div>
+        
+        <!-- 3D Model Container -->
+        <div class="hero-model">
+            <!-- 
+                NOTE: This uses a placeholder 3D model of an astronaut. 
+                Replace the 'src' URL with a .glb file of a soccer ball or trophy for production.
+                Example: src="static/models/soccer_ball.glb"
+            -->
+            <model-viewer 
+                src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" 
+                alt="A 3D model representation" 
+                auto-rotate 
+                camera-controls 
+                shadow-intensity="1"
+                environment-image="neutral"
+                exposure="0.8">
+            </model-viewer>
+        </div>
+    </header>
+
+    <section id="features" class="section-container">
+        <h2 class="section-title">Core <span>Services</span></h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Global Player Database</h3>
+                <p>Filter through our expansive dataset of global talent. Analyze physical attributes, market value (EUR), and overall ratings instantly.</p>
+                <a href="#" class="card-link">Explore Data &rarr;</a>
+            </div>
+
+            <div class="card">
+                <h3>Club Valuations</h3>
+                <p>Compare powerhouse clubs like Juventus, PSG, and Manchester United. Review average overall ratings and team compositions.</p>
+                <a href="#" class="card-link">View Clubs &rarr;</a>
+            </div>
+
+            <div class="card">
+                <h3>Geographic Heatmaps</h3>
+                <p>Visualize the distribution of top-tier football talent across the globe using interactive, real-time map integrations.</p>
+                <a href="#" class="card-link">View Heatmaps &rarr;</a>
+            </div>
+            
+            <div class="card">
+                <h3>Attribute Leaderboards</h3>
+                <p>See how legends like L. Messi and R. Lewandowski stack up in isolated metrics like Pace, Physicality, and Overall impact.</p>
+                <a href="#" class="card-link">See Leaderboards &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section-container">
+        <h2 class="section-title">Choose Your <span>Tier</span></h2>
+        <div class="grid">
+            <div class="pricing-tier">
+                <h3>Scout</h3>
+                <div class="pricing-price">Free</div>
+                <ul>
+                    <li>Basic Player Search</li>
+                    <li>Top 100 Leaderboards</li>
+                    <li>Standard Analytics</li>
+                </ul>
+                <a href="#" class="btn-analytics" style="width: 100%; text-align: center; font-size: 0.9rem;">Sign Up</a>
+            </div>
+
+            <div class="pricing-tier featured">
+                <h3>Manager</h3>
+                <div class="pricing-price">$19<span>/mo</span></div>
+                <ul>
+                    <li>Full Player Database</li>
+                    <li>Interactive Heatmaps</li>
+                    <li>Historical Club Data</li>
+                    <li>Priority API Access</li>
+                </ul>
+                <a href="/analytics" class="btn-analytics" style="width: 100%; text-align: center; font-size: 0.9rem;">Go to Dashboard</a>
+            </div>
+
+            <div class="pricing-tier">
+                <h3>Director</h3>
+                <div class="pricing-price">$49<span>/mo</span></div>
+                <ul>
+                    <li>Everything in Manager</li>
+                    <li>Custom Tableau Integrations</li>
+                    <li>Predictive Match Engine</li>
+                    <li>24/7 Dedicated Support</li>
+                </ul>
+                <a href="#" class="btn-analytics" style="width: 100%; text-align: center; font-size: 0.9rem;">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 FIFA Hub Premium. Data and Analytics Platform.</p>
+    </footer>
+
+</body>
+</html>

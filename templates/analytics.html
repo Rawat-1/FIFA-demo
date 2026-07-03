@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA Analytics | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --nav-bg: #121212;
+            --card-bg: #171717;
+            --text-main: #f5f5f5;
+            --text-muted: #a3a3a3;
+            --gold-primary: #d4af37;
+            --gold-hover: #f1c40f;
+            --border-color: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--nav-bg);
+            padding: 1.2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            z-index: 100;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--gold-primary);
+        }
+
+        nav .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav .nav-links a:hover, nav .nav-links a.active {
+            color: var(--gold-hover);
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            text-align: center;
+            padding: 4rem 2rem 1rem 2rem;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .dashboard-header h1 span {
+            color: var(--gold-primary);
+        }
+
+        .dashboard-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Fixed Tableau Container Layout */
+        .analytics-main-container {
+            width: 100%;
+            max-width: 1420px;
+            margin: 2rem auto 5rem auto;
+            padding: 15px;
+        }
+
+        .tableau-wrapper {
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            overflow-x: auto; /* Fallback scrollbar for smaller desktop viewpoint scales */
+        }
+
+        .tableauPlaceholder {
+            margin: 0 auto;
+            width: 1366px !important;
+            height: 795px !important;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background-color: var(--nav-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 900px) {
+            nav { padding: 1.2rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">FIFA Hub Premium</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/analytics" class="active">Analytics</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-header">
+        <h1>Global <span>Analytics</span> Engine</h1>
+        <p>Interactive player, club, and geographic data breakdown.</p>
+    </div>
+
+    <main class="analytics-main-container">
+        <div class="tableau-wrapper">
+            <div class='tableauPlaceholder' id='viz1783084386596' style='position: relative; width: 1366px; height: 795px;'>
+                <noscript>
+                    <a href='#'>
+                        <img alt='FIFA 2022 Analysis ' src='https://public.tableau.com/static/images/FI/FIFA26Analysis/Dashboard1/1_rss.png' style='border: none' />
+                    </a>
+                </noscript>
+                <object class='tableauViz' width='1366' height='795' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='site_root' value='' />
+                    <param name='name' value='FIFA26Analysis/Dashboard1' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https://public.tableau.com/static/images/FI/FIFA26Analysis/Dashboard1/1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='en-US' />
+                    <param name='device' value='desktop' />
+                </object>
+            </div>                
+            <script type='text/javascript'>                    
+                var divElement = document.getElementById('viz1783084386596');                    
+                var vizElement = divElement.getElementsByTagName('object')[0];                    
+                vizElement.style.width='1366px';
+                vizElement.style.height='795px';                    
+                var scriptElement = document.createElement('script');                    
+                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+                vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FIFA Hub Premium. Data and Analytics Platform.</p>
+    </footer>
+
+</body>
+</html>
